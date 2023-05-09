@@ -1,6 +1,6 @@
 # espdrone_bridge
 
-[espdrone]() 是基于 Crazyflie 开发的 一款以 ESP32 为芯片的轻量化 quadrotor。由于无法搭载机载电脑，没有 mavros 的 setpoint 功能，仅凭官方给出的 [Python_lib]() 难以满足开发需求。
+[espdrone](https://espressif-docs.readthedocs-hosted.com/projects/espressif-esp-drone/en/latest/gettingstarted.html) 是基于 Crazyflie 开发的 一款以 ESP32 为芯片的轻量化 quadrotor。由于无法搭载机载电脑，没有 mavros 的 setpoint 功能，仅凭官方给出的 [Python_lib](https://github.com/leeebo/crazyflie-lib-python/tree/esp-drone) 难以满足开发需求。
 
 这项工作提供了一个 ros bridge，让 espdrone 的电机控制接口成为一个 ros 节点，基于此可以实现更为复杂的位置控制和轨迹追踪功能。其中，位置反馈由动捕系统实现。
 
@@ -28,9 +28,11 @@ source devel setup.zsh
 ## 控制模式
 ### Mode 1:  推力控制模式 
 
-这种控制方式的控制器（基于 [lee controller]() 开发的控制器）完全在地面站上实现，控制思想为由位置误差 `position_error` 和 速度误差 `velocity_error` 计算出期望加速度。再由期望加速度的大小和方向计算出期望升力，机身角速度和四元数，最终以 `<mavros_msgs::AttitudeTarget>` 的形式发布出来作为espdrone电机控制接口的输入。
+这种控制方式的控制器（基于 [lee controller](https://github.com/ethz-asl/rotors_simulator/tree/master/rotors_control) 开发的控制器）完全在地面站上实现，控制思想为由位置误差 `position_error` 和 速度误差 `velocity_error` 计算出期望加速度。再由期望加速度的大小和方向计算出期望升力，机身角速度和四元数，最终以 `<mavros_msgs::AttitudeTarget>` 的形式发布出来作为espdrone电机控制接口的输入。
 
-优点是控制性能较好，可调参数较多，缺点是控制器和执行器之间通过网络连接，存在较高延迟：
+**优点**是控制性能较好，可调参数较多
+
+**缺点**是控制器和执行器之间通过网络连接，存在较高延迟：
 
 lee_controller.launch
 ```XML
@@ -74,7 +76,9 @@ sh ./src/espdrone-traj-tracking/scripts/esp_mocap_attitude.sh
 ### Mode 2:  位置控制模式
 这种控制方式使用官方库中自带的set_position_setpoint() 函数，地面站只做轨迹点的按时间戳发布。
 
-优点是可以在飞行时线上即时完成控制，基本可以做到无延迟，缺点是原生的位置控制器较为简单，控制效果较差。
+**优点**是可以在飞行时线上即时完成控制，基本可以做到无延迟
+
+**缺点**是自带的位置控制器较为简单，控制效果较差。
 
 启动方式
 
