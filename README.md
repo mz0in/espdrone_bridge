@@ -21,7 +21,7 @@ cd espdrone_ws/src
 git clone https://github.com/bowenXuu/espdrone_bridge.git
 cd ..
 catkin build
-source devel setup.zsh
+source devel/setup.zsh
 ```
 ---
 
