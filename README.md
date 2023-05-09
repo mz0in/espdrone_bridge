@@ -74,7 +74,7 @@ lee_controller.launch
 sh ./src/espdrone-traj-tracking/scripts/esp_mocap_attitude.sh
 ```
 ### Mode 2:  位置控制位置模式
-这种控制方式使用官方库中自带的set_position_setpoint() 函数，地面站只做轨迹点的按时间戳发布。
+这种控制方式使用官方库中自带的 `set_position_setpoint()` 函数，地面站只做轨迹点的按时间戳发布。
 
 **优点**是可以在飞行时线上即时完成控制，基本可以做到无延迟
 
