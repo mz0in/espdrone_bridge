@@ -26,7 +26,7 @@ source devel setup.zsh
 ---
 
 ## 控制模式
-### Mode 1:  推力控制模式 
+### Mode 1:  推力控制位置模式 
 
 这种控制方式的控制器（基于 [lee controller](https://github.com/ethz-asl/rotors_simulator/tree/master/rotors_control) 开发的控制器）完全在地面站上实现，控制思想为由位置误差 `position_error` 和 速度误差 `velocity_error` 计算出期望加速度。再由期望加速度的大小和方向计算出期望升力，机身角速度和四元数，最终以 `<mavros_msgs::AttitudeTarget>` 的形式发布出来作为espdrone电机控制接口的输入。
 
@@ -73,7 +73,7 @@ lee_controller.launch
 ```bash
 sh ./src/espdrone-traj-tracking/scripts/esp_mocap_attitude.sh
 ```
-### Mode 2:  位置控制模式
+### Mode 2:  位置控制位置模式
 这种控制方式使用官方库中自带的set_position_setpoint() 函数，地面站只做轨迹点的按时间戳发布。
 
 **优点**是可以在飞行时线上即时完成控制，基本可以做到无延迟
