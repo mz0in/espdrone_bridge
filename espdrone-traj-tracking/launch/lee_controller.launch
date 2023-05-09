@@ -1,0 +1,46 @@
+<launch>
+    <!-- 初始值
+    <arg name="/ppx" default="6.0"/>
+    <arg name="/ppy" default="6.0"/>
+    <arg name="/ppz" default="12.0"/>
+    <arg name="/pvx" default="4.7"/>
+    <arg name="/pvy" default="4.7"/>
+    <arg name="/pvz" default="8.0"/>
+    <arg name="/mass" default="0.044"/>
+    <arg name="/pth" default="0.8"/>
+    <arg name="/angx" default="-3.0"/>
+    <arg name="/angy" default="-3.0"/>
+    <arg name="/angz" default="-3.0"/> -->
+
+    <arg name="ppx" default="1.0"/>
+    <arg name="ppy" default="1.0"/>
+    <arg name="ppz" default="0.1"/>
+    <arg name="pvx" default="1.0"/>
+    <arg name="pvy" default="1.0"/>
+    <arg name="pvz" default="0.02"/>
+    <arg name="mass" default="0.044"/>
+    <arg name="pth" default="0.65"/>
+    <arg name="angx" default="-4.0"/>
+    <arg name="angy" default="-4.0"/>
+    <arg name="angz" default="-4.0"/>
+
+    <node pkg="espdrone-traj-tracking" name="attitude_target" type="ac_lee_position_controller_esp_node" output="screen">
+        <param name="ppx" value="$(arg ppx)" />
+        <param name="ppy" value="$(arg ppy)" />
+        <param name="ppz" value="$(arg ppz)" />
+        <param name="pvx" value="$(arg pvx)" />
+        <param name="pvy" value="$(arg pvy)" />
+        <param name="pvz" value="$(arg pvz)" />
+        <param name="mass" value="$(arg mass)" />
+        <param name="pth" value="$(arg pth)" />
+        <param name="angx" value="$(arg angx)" />
+        <param name="angy" value="$(arg angy)" />
+        <param name="angz" value="$(arg angz)" />
+    </node>
+
+    <node pkg="espdrone-traj-tracking" name="send_cmd" type="attitude_ctrl_esp_drone.py" output="screen" />
+
+    <!-- <node pkg="espdrone-traj-tracking" name="send_cmd" type="attitude_ctrl_esp_drone.py" output="screen" /> -->
+
+    <node pkg="rosbag" name="bag_record" type="record" args="/pid_param /mavros/local_position/pose /mavros/local_position/odom /aerial_catcher/esp/target_pose /aerial_catcher/esp/attitude -O /home/nros/bags/espdrone/data/pid_param.bag" />
+</launch>
