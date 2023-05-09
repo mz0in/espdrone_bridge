@@ -18,7 +18,7 @@
 run with your own computer
 ```bash
 cd espdrone_ws/src
-git clone https://github.com/bowenXuu/espdrone_ctl.git
+git clone https://github.com/bowenXuu/espdrone_bridge.git
 cd ..
 catkin build
 source devel setup.zsh
