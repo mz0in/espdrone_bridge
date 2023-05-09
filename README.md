@@ -1,6 +1,6 @@
 # espdrone_bridge
 
-[espdrone](https://espressif-docs.readthedocs-hosted.com/projects/espressif-esp-drone/en/latest/gettingstarted.html) 是基于 Crazyflie 开发的 一款以 ESP32 为芯片的轻量化 quadrotor。由于无法搭载机载电脑，没有 mavros 的 setpoint 功能，仅凭官方给出的 [Python_lib](https://github.com/leeebo/crazyflie-lib-python/tree/esp-drone) 难以满足开发需求。
+[espdrone](https://espressif-docs.readthedocs-hosted.com/projects/espressif-esp-drone/en/latest/gettingstarted.html) 是基于 Crazyflie 开发的一款以 ESP32 为芯片的轻量化 quadrotor。由于无法搭载机载电脑，没有 mavros 的 setpoint 功能，仅凭官方给出的 [Python_lib](https://github.com/leeebo/crazyflie-lib-python/tree/esp-drone) 难以满足开发需求。
 
 这项工作提供了一个 ros bridge，让 espdrone 的电机控制接口成为一个 ros 节点，基于此可以实现更为复杂的位置控制和轨迹追踪功能。其中，位置反馈由动捕系统实现。
 
